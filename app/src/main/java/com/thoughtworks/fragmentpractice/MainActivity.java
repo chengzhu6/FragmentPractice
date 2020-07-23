@@ -13,12 +13,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         final AndroidFragment androidFragment = new AndroidFragment();
         final JavaFragment javaFragment = new JavaFragment();
         showFragment(androidFragment);
+
         final View androidBtn = findViewById(R.id.android);
         final View javaBtn = findViewById(R.id.java);
         changeButtonStyle(androidBtn, javaBtn);
+
         androidBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void showFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+    private void showFragment(Fragment fragment) {
         if (!fragment.isAdded()) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame_layout, fragment)
                     .commit();
         }
